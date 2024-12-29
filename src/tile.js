@@ -7,7 +7,7 @@ export default class Tile {
     #value
     #image
 
-    constructor(tileContainer, value = Math.random() > 0.5 ? 2 : 4, imageMap = {
+    constructor(tileContainer, value = Math.random() > 0.5 ? 4 : 2, imageMap = {
         2: '../images/2.png',
         4: '../images/4.png',
         8: '../images/8.png',

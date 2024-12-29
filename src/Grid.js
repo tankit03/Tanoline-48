@@ -129,6 +129,7 @@ function showWinModal() {
     const winModal = document.getElementById('win-modal');
     const winImage = document.getElementById('win-image'); // Image element in the modal
     const images = [
+        '/images/win1.png',
         '/images/win2.png',
         '/images/win3.png',
         '/images/win4.png',
