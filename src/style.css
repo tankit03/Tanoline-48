@@ -1,0 +1,208 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    font-family: Arial;
+  }
+  
+  body {
+    background-color: #FFC7C7;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align content to the top */
+    height: 100vh;
+    margin: 0;
+    font-size: 7.5vmin;
+    padding: 2vmin; /* Add padding to ensure content doesn't get clipped */
+    }   
+  
+    #game-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5vmin; /* Add some spacing between the heading and the game board */
+    }
+
+    #controls-container {
+
+        display: flex;
+        align-items: center;
+        margin-bottom: 2vmin; /* Space between controls and game board */
+        margin-top: 2vmin; /* Space between controls and the heading */
+    }
+
+    h2 {
+        font-family: 'Akaya Telivigala', cursive;
+        margin: 0;
+        font-size: 1.8em; /* Adjust heading size as needed */
+        text-align: center;
+    }
+  
+  #game-board {
+      display: grid;
+      grid-template-columns: repeat(var(--grid-size), var(--cell-size));
+      grid-template-rows: repeat(var(--grid-size), var(--cell-size));
+      background-color: #ED9ED6;
+      gap: var(--cell-gap);
+      border-radius: 1vmin;
+      border: 1vmin;
+      padding: var(--cell-gap);
+      position: relative;
+  }
+  
+  .cell {
+      background-color: #7071E8;
+      border-radius: 1vmin;
+  }
+  
+  .tile-class {
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: var(--cell-size);
+      height: var(--cell-size);
+      background-color: red;
+      border-radius: 1vmin;
+      top: calc(var(--y) * (var(--cell-size) + var(--cell-gap)) + var(--cell-gap));
+      left: calc(var(--x) * (var(--cell-size) + var(--cell-gap)) + var(--cell-gap));
+      background-color: hsl(0, 100%, var(--background-lightness));
+      color: hsl(200, 50%, var(--text-lightness));
+      animation: show 200ms ease-in-out;
+      transition: 100ms ease-in-out;
+  
+      /* Background image adjustments */
+      background-size: 80%; /* Ensure the image fits within the tile */
+      background-repeat: no-repeat; /* Prevent repeating images */
+      background-position: center; /* Center the image within the tile */
+  }
+  
+  @keyframes show {
+      0% {
+          transform: scale(0);
+      }
+  }
+
+  #score-container {
+    display: flex;
+    align-items: self-end;
+  }
+
+    #restart-button, #score-container {
+        font-family: 'Akaya Telivigala', cursive;
+        font-size: 4.5vmin; /* Increase font size */
+        font-weight: bold;
+        
+        color: #5E17EB; /* Complementary color to match the game board */
+        background-color: #FFF0F5; /* Light background to make the score stand out */
+        padding: 2vmin 8vmin; /* Increase padding for a larger appearance */
+        border-radius: 1vmin; /* Rounded corners to match the game board style */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+        width: fit-content; /* Ensures the box wraps the content neatly */
+        margin-right: 1vmin; /* Space between the button and the score container */
+    }
+
+    #score {
+        color: #E91E63; /* Highlight the score in a vibrant color */
+        font-family: 'Akaya Telivigala', cursive;
+    }
+
+    .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 10; /* Ensure it's above other elements */
+    }
+    
+    .hidden {
+        display: none; /* Hide the modal by default */
+    }
+    
+    .modal-content {
+        font-family: 'Akaya Telivigala', cursive;
+        background-color: #7071E8;
+        border-radius: 1vmin;
+        padding: 2vmin;
+        text-align: center;
+        animation: slideDown 300ms ease-in-out; /* Optional animation */
+    }
+    
+    .modal-content img {
+        width: 45vmin; /* Size of the funny image */
+        border-radius: 1.2vmin;
+        height: auto;
+        margin-bottom: 2vmin; /* Space between image and message */
+    }
+    
+    #retry-button {
+        font-family: 'Akaya Telivigala', cursive;
+        background-color: #5E17EB;
+        color: white;
+        border: none;
+        border-radius: 0.5vmin;
+        padding: 1vmin 3vmin;
+        font-size: 3vmin;
+        cursor: pointer;
+        transition: background-color 200ms ease-in-out;
+    }
+
+    p{
+        font-family: 'Akaya Telivigala', cursive;
+        font-size: 4vmin;
+    }
+    
+    #retry-button:hover {
+        background-color: #E91E63; /* Highlight on hover */
+    }
+    
+    @keyframes slideDown {
+        0% {
+            transform: translateY(-50%);
+            opacity: 0;
+        }
+        100% {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+    
+    #win-modal .modal-content {
+        width: 100vmin;
+        font-family: 'Akaya Telivigala', cursive;
+        background-color: #DFF6FF;
+        border-radius: 1vmin;
+        padding: 2vmin;
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        animation: slideDown 300ms ease-in-out;
+    }
+    
+    #win-modal img {
+        font-family: 'Akaya Telivigala', cursive;
+        width: 40vmin;
+        height: auto;
+        margin-bottom: 1vmin;
+    }
+    
+    #continue-button {
+        font-family: 'Akaya Telivigala', cursive;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 0.5vmin;
+        padding: 1vmin 3vmin;
+        font-size: 3vmin;
+        cursor: pointer;
+        transition: background-color 200ms ease-in-out;
+    }
+    
+    #continue-button:hover {
+        background-color: #45A049;
+    }
+    
+
+
